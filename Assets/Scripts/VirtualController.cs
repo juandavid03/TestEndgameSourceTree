@@ -15,6 +15,7 @@ public abstract class VirtualController : MonoBehaviour
 
     [SerializeField]
     protected NavMeshAgent agent;
+    [SerializeField]
     protected BulletPool bulletPool;
     protected float hitPoints;
 

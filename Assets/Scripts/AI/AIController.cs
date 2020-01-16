@@ -79,7 +79,8 @@ public class AIController : VirtualController
         FireRate = 10;
         cooldownTime = 0.5f;
         animationController = this.GetComponent<AnimController>();
-        bulletPool = GameManager._instance.GetComponent<BulletPool>();
+        if(bulletPool == null)
+            bulletPool = GameManager._instance.GetComponent<BulletPool>();
         rb = this.GetComponent<Rigidbody>();
         agent = this.GetComponent<NavMeshAgent>();
     }

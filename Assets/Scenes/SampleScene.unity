@@ -200,7 +200,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxEnemies: 1
-  spawnCooldown: 10
+  spawnCooldown: 2
   enemyPool: {fileID: 1038392947}
   currentActiveEnemies: 0
 --- !u!4 &20288968
@@ -646,7 +646,7 @@ MonoBehaviour:
   pooledObjects: []
   objectToPool: {fileID: 6078267205510616675, guid: b7da0b8ed67dbd34d81b572eac418992,
     type: 3}
-  amountToPool: 20
+  amountToPool: 100
 --- !u!1 &385872029
 GameObject:
   m_ObjectHideFlags: 0
@@ -3168,6 +3168,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animationController: {fileID: 0}
   agent: {fileID: 0}
+  bulletPool: {fileID: 0}
   shotClip: {fileID: 8300000, guid: 35c6c618b7df03d46a55c220e2646665, type: 3}
   source: {fileID: 880006123}
   gun: {fileID: 126559179}
@@ -11843,6 +11844,11 @@ PrefabInstance:
       propertyPath: wayPoints.Array.data[1]
       value: 
       objectReference: {fileID: 1174113074}
+    - target: {fileID: 8664412400522996320, guid: 86a42b5ac18d5d844b90f056154987de,
+        type: 3}
+      propertyPath: bulletPool
+      value: 
+      objectReference: {fileID: 323941551}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 86a42b5ac18d5d844b90f056154987de, type: 3}
 --- !u!1 &8710142311352460360
