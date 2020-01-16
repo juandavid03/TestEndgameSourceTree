@@ -53,15 +53,16 @@ public class PlayerController : VirtualController
     void Update()
     {
         LookTowardsTarget();
+        MoveWithKeys();
         if (this.transform.position.x == finalClickDestination.x && this.transform.position.z == finalClickDestination.z)
         {
             animationController.SetRunningVariable(false);
         }
 
-        if (Input.GetMouseButtonDown(0))
+        /*if (Input.GetMouseButtonDown(0))
         {
             MoveTowardsTarget();
-        }
+        }*/
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
@@ -79,6 +80,14 @@ public class PlayerController : VirtualController
         else 
         {
             animationController.SetShootingVariable(false);
+        }
+        if(Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D))
+        {
+            animationController.SetRunningVariable(true);
+        }
+        else
+        {
+            animationController.SetRunningVariable(false);
         }
     }
 
@@ -144,6 +153,15 @@ public class PlayerController : VirtualController
 
     #endregion
     #region Metodo Propio
+
+    void MoveWithKeys()
+    {
+        float horInput = Input.GetAxis("Horizontal");
+        float verInput = Input.GetAxis("Vertical");
+        Vector3 movement = new Vector3(horInput, 0f, verInput);
+        Vector3 moveDestination = transform.position + movement;
+        agent.destination = moveDestination;
+    }
     private void Teleport()
     {
         if(canTeleport)
