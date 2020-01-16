@@ -22,6 +22,11 @@ public abstract class VirtualController : MonoBehaviour
     protected float FireRate = 4;
     protected float lastfired;
 
+    [SerializeField]
+    protected AudioClip shotClip;
+    [SerializeField]
+    protected AudioSource source;
+
 
     [SerializeField]
     protected GameObject gun;

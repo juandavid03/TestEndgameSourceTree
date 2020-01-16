@@ -90,7 +90,7 @@ public class AIController : VirtualController
             animationController.SetRunningVariable(false);
         }
         currentState.UpdateState();
-        Debug.LogError("IS STOPPED? " + navMeshAgent.isStopped);
+//        Debug.LogError("IS STOPPED? " + navMeshAgent.isStopped);
         Debug.LogError("Current State: " + currentState);
     }
 
@@ -122,6 +122,7 @@ public class AIController : VirtualController
         {
                 bullet.transform.position = gun.transform.position;
                 bullet.transform.rotation = gun.transform.rotation;
+                AudioSource.PlayClipAtPoint(shotClip, this.transform.position);
                 bullet.SetActive(true);
                 bullet.GetComponent<Bullet>().AccelerateBullet(directionToShoot);
         }

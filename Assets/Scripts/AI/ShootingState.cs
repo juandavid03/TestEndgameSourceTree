@@ -77,7 +77,7 @@ public class ShootingState : AIStateBase
             ToChase(player);
         else
         {
-            controlled.MakeTransition(EnemyState.Alert);
+            ToAlert();
         }
     }
 
@@ -85,5 +85,11 @@ public class ShootingState : AIStateBase
     {
         controlled.chaseTarget = player;
         controlled.MakeTransition(EnemyState.Chase);
+    }
+
+    private void ToAlert()
+    {
+        controlled.chaseTarget = null;
+        controlled.MakeTransition(EnemyState.Alert);
     }
 }

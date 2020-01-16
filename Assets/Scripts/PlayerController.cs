@@ -17,6 +17,7 @@ public class PlayerController : VirtualController
     float angle;
 
 
+
     private List<string> keys;
 
 
@@ -58,11 +59,6 @@ public class PlayerController : VirtualController
         {
             animationController.SetRunningVariable(false);
         }
-
-        /*if (Input.GetMouseButtonDown(0))
-        {
-            MoveTowardsTarget();
-        }*/
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
@@ -131,6 +127,7 @@ public class PlayerController : VirtualController
             bullet.transform.position = gun.transform.position;
             bullet.transform.rotation = gun.transform.rotation;
             bullet.SetActive(true);
+            AudioSource.PlayClipAtPoint(shotClip, this.transform.position);
             bullet.GetComponent<Bullet>().AccelerateBullet(rotationToShoot);
         }
     }
