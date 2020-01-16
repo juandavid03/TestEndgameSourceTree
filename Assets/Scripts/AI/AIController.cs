@@ -6,6 +6,7 @@ using UnityEngine.AI;
 public class AIController : VirtualController
 {
     public Transform[] wayPoints;
+    public GameObject patrolWaypoints;
     public Transform eyes;
     public float sightRange = 20f;
     public float searchingTurnSpeed = 120f;
@@ -61,6 +62,11 @@ public class AIController : VirtualController
     }
     private void Awake()
     {
+        patrolWaypoints = GameObject.Find("Patrol_Waypoints");
+        for (int i = 0; i< wayPoints.Length; i++)
+        {
+            wayPoints[i] = patrolWaypoints.transform.GetChild(i).transform;
+        }
         hitPoints = 1f;
         animationController = this.GetComponent<AnimController>();
         CanShoot = true;
