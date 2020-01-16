@@ -90,7 +90,6 @@ public class AIController : VirtualController
             animationController.SetRunningVariable(false);
         }
         currentState.UpdateState();
-//        Debug.LogError("IS STOPPED? " + navMeshAgent.isStopped);
         Debug.LogError("Current State: " + currentState);
     }
 
@@ -115,7 +114,6 @@ public class AIController : VirtualController
     }
     protected override void Shoot()
     {
-        Debug.Log("VOY A DISPARAR");
         animationController.SetShootingVariable(true);
         GameObject bullet = bulletPool.GetPooledObject();
         if (bullet != null)

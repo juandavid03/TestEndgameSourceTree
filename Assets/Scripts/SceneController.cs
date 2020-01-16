@@ -5,9 +5,9 @@ public class SceneController : MonoBehaviour
 {
     #region Variables
     public static SceneController _instance = null;
-    private string gameScene = "SampleScene";
-    private string menuScene = "MainMenu";
-    private string victoryScene = "victoryScene";
+    public string gameScene = "SampleScene";
+    public string menuScene = "MainMenu";
+    public string victoryScene = "victoryScene";
     #endregion
 
     #region Singleton Definition

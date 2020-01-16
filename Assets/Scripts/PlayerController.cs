@@ -63,7 +63,6 @@ public class PlayerController : VirtualController
         if (Input.GetKeyDown(KeyCode.Space))
         {
             Teleport();
-            Debug.Log("TELEPORT");
         }
         if (Input.GetMouseButton(1))
         {
@@ -212,10 +211,11 @@ public class PlayerController : VirtualController
 
         if(other.CompareTag("key"))
         {
-            
             keys.Add(other.GetComponent<Key>().Value);
             other.GetComponent<Key>().Disapear();
+            canvasManager.DisplayInfoText("Encontraste la llave de: " + other.GetComponent<Key>().Value);
         }
+
         if(other.CompareTag("door"))
         {
             for(int i = 0; i<keys.Count; i++)
@@ -227,7 +227,7 @@ public class PlayerController : VirtualController
                 }
                 else
                 {
-                    print("NO TIENES LA LLAVE DE ESTA PUERTA");
+                    canvasManager.DisplayInfoText("No key for this lock");
                 }
             }
         }

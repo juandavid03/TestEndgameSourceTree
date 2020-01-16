@@ -27,7 +27,6 @@ public class Bullet : MonoBehaviour
 
     private void OnCollisionEnter(Collision other)
     {
-        Debug.Log("Colisiono la bala con: " + other.gameObject.name);
         if (other.gameObject.CompareTag("Player"))
         {
             this.gameObject.SetActive(false);

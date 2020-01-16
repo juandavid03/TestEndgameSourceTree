@@ -12,13 +12,20 @@ public class CanvasManager : MonoBehaviour
     private GameObject generalPanel;
     [SerializeField]
     private GameObject instructionsPanel;
+    [SerializeField]
+    private Text infoText;
 
     private void Start()
     {
-        if(SceneController._instance.getCurrentScene() == "MainMenu")
+        if(SceneController._instance.getCurrentScene() == SceneController._instance.menuScene)
         {
             generalPanel.SetActive(true);
             instructionsPanel.SetActive(false);
+        }
+
+        if (SceneController._instance.getCurrentScene() == SceneController._instance.gameScene)
+        {
+            infoText.enabled = false;
         }
     }
     public void ReduceHpBar(float fillAmount)
@@ -46,5 +53,19 @@ public class CanvasManager : MonoBehaviour
     public void PauseBtn()
     {
 
+    }
+
+    public void DisplayInfoText(string message)
+    {
+        infoText.text = message;
+        infoText.enabled = true;
+        StartCoroutine(DisapearInfoTextCR());
+    }
+
+    IEnumerator DisapearInfoTextCR()
+    {
+        yield return new WaitForSeconds(2);
+        infoText.text = null;
+        infoText.enabled = false;
     }
 }

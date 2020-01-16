@@ -15,9 +15,7 @@ public class ShootingState : AIStateBase
 
     public override void UpdateState()
     {
-        Debug.Log("Can Shoot: " + controlled.CanShoot);
         CheckForShot();
-
     }
 
     private bool isInRange()
@@ -36,27 +34,21 @@ public class ShootingState : AIStateBase
         {
             if (isInRange())
             {
-            Debug.Log("ESTOY EN RANGE");
-
                 LookAtPlayer();
-                Debug.Log("LOOKING AT PLAYER ES DISTINTO DE NULL");
                 Shoot();
             }
 
         }
         else
         {
-            Debug.Log("ESTOY EN EL ELSE, VOY A HACER SEARCH");
             Search();
         }
     }
 
     private void Shoot()
     {
-        Debug.Log("ENTRE A SHOOT");
         if (controlled.CanShoot == true)
         {
-            Debug.Log("VOY A DISPARAR");
 
             controlled.StopAndShoot(controlled.chaseTarget.position - controlled.transform.position);
 

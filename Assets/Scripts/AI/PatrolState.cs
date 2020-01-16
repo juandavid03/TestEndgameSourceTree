@@ -18,6 +18,7 @@ public class PatrolState : AIStateBase
     {
         Patrol();
         Search();
+        Debug.Log("IS STOPPED? " + controlled.navMeshAgent.isStopped);
     }
 
     public override void StartState()
@@ -47,7 +48,7 @@ public class PatrolState : AIStateBase
 
     private void SetCurrentPath()
     {
-        Debug.LogError("Current Path: " + controlled.wayPoints[nextWayPoint].position);
+        controlled.navMeshAgent.isStopped = false;
         controlled.navMeshAgent.SetDestination(controlled.wayPoints[nextWayPoint].position);
     }
 

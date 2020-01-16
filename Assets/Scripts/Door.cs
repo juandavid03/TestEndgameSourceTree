@@ -8,6 +8,11 @@ public class Door : MonoBehaviour
     Animator animControl;
 
     [SerializeField]
+    private AudioSource source;
+    [SerializeField]
+    private AudioClip doorClip;
+
+    [SerializeField]
     private string lockForKey;
 
     public string LockForKey
@@ -17,6 +22,7 @@ public class Door : MonoBehaviour
     public void OpenDoor()
     {
         animControl.SetTrigger("openDoor");
+        source.PlayOneShot(doorClip);
     }
 
     public void DisappearDoor()
