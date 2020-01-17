@@ -5,7 +5,6 @@ using UnityEngine;
 public class ShootingState : AIStateBase
 {
 
-    private int nextWayPoint;
     private float range = 15f;
 
     public ShootingState(AIController controlled) : base(controlled)
@@ -18,7 +17,7 @@ public class ShootingState : AIStateBase
         CheckForShot();
     }
 
-    private bool isInRange()
+    private bool IsInRange()
     {
         return (controlled.chaseTarget.position - controlled.transform.position).magnitude < range;
     }
@@ -32,7 +31,7 @@ public class ShootingState : AIStateBase
     {
         if (LookForPlayer() != null)
         {
-            if (isInRange())
+            if (IsInRange())
             {
                 LookAtPlayer();
                 Shoot();
@@ -55,11 +54,11 @@ public class ShootingState : AIStateBase
 
             controlled.CanShoot = false;
 
-            controlled.StartCoroutine("shootCooldownCR");
+            controlled.StartCoroutine("ShootCooldownCR");
         }
         else
         {
-            controlled.StartCoroutine("shootCooldownCR");
+            controlled.StartCoroutine("ShootCooldownCR");
         }
     }
 

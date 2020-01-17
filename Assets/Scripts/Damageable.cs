@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class Damageable : MonoBehaviour
 {
+    //Class in charge of managing the health of AI & Player
     private float hitPoints;
     public float HitPoints
     {
         get { return hitPoints; }
+        set { hitPoints = value; }
     }
 
     private CanvasManager canvasController;
@@ -17,6 +19,8 @@ public class Damageable : MonoBehaviour
         hitPoints = 1f;
         canvasController = GameObject.Find("CanvasManager").GetComponent<CanvasManager>();
     }
+
+
     public void TakeDamage()
     {
         hitPoints -= 0.25f;
@@ -26,11 +30,14 @@ public class Damageable : MonoBehaviour
         }
 
     }
+
+
     public void Die()
     {
         if(this.gameObject.CompareTag("enemy"))
         {
-            this.gameObject.SetActive(false);
+            EnemyPool._instance.RecycleObject(this.gameObject);
+
         }
         if (this.gameObject.CompareTag("Player"))
         {

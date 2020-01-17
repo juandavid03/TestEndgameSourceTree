@@ -21,7 +21,7 @@ public class ChaseState : AIStateBase
         if (player != null)
         {
             controlled.chaseTarget = player;
-            if (isInRange())
+            if (IsInRange())
             {
                 controlled.navMeshAgent.isStopped = true;
                 controlled.MakeTransition(EnemyState.Shooting);
@@ -44,7 +44,7 @@ public class ChaseState : AIStateBase
         if (player != null)
         {
             controlled.navMeshAgent.SetDestination(controlled.chaseTarget.position);
-            if (isInRange())
+            if (IsInRange())
             {
                 controlled.MakeTransition(EnemyState.Shooting);
             }
@@ -54,7 +54,7 @@ public class ChaseState : AIStateBase
             ToAlert();
     }
 
-    private bool isInRange()
+    private bool IsInRange()
     {
         return (controlled.chaseTarget.position - controlled.transform.position).magnitude < range;
     }

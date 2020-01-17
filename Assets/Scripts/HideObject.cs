@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class HideObject : MonoBehaviour
 {
+    //Hides objects, must be calleed from the Player controller when it collides with an object. 
     public SpriteRenderer hideableObjectRenderer;
 
     public void HideObjects()

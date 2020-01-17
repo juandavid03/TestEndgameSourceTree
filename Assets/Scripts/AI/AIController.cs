@@ -106,14 +106,7 @@ public class AIController : VirtualController
         currentState.OnTriggerEnter(other);
     }
 
-    protected override void LookTowardsTarget()
-    {
-        throw new System.NotImplementedException();
-    }
-    protected override void MoveTowardsTarget()
-    {
-        throw new System.NotImplementedException();
-    }
+    //Tells the gun to shoot, and plays the sound and animation.
     protected override void Shoot()
     {
         weapon.Shoot(directionToShoot);
@@ -121,17 +114,19 @@ public class AIController : VirtualController
         animationController.SetShootingVariable(true);
     }
 
+    //resets shooting animation.
     public void StopShooting()
     {
         animationController.SetShootingVariable(false);
     }
 
+    //Public method to call from outside scripts.
     public void StopAndShoot(Vector3 _directionToShoot)
     {
         directionToShoot = _directionToShoot;
         Shoot();
     }
-    public IEnumerator shootCooldownCR()
+    public IEnumerator ShootCooldownCR()
     {
         yield return new WaitForSeconds(cooldownTime * Time.deltaTime);
         canShoot = true;

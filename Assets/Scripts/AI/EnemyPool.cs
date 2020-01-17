@@ -8,6 +8,29 @@ public class EnemyPool : MonoBehaviour
     public GameObject objectToPool;
     public int amountToPool;
 
+    public static EnemyPool _instance;
+    #region Singleton Definition
+    //Awake is always called before any Start functions
+    void Awake()
+    {
+        //Check if instance already exists
+        if (_instance == null)
+
+            //if not, set instance to this
+            _instance = this;
+
+        //If instance already exists and it's not this:
+        else if (_instance != this)
+
+            //Then destroy this. This enforces our singleton pattern, meaning there can only ever be one instance of a GameManager.
+            Destroy(gameObject);
+
+        //Sets this to not be destroyed when reloading scene
+        DontDestroyOnLoad(gameObject);
+
+    }
+    #endregion
+
     // Start is called before the first frame update
     private void Start()
     {
@@ -34,5 +57,12 @@ public class EnemyPool : MonoBehaviour
             }
         }
         return null;
+    }
+
+    public void RecycleObject(GameObject GO)
+    {
+       EnemySpawn.currentActiveEnemies--;
+       GO.gameObject.SetActive(false);
+        GO.GetComponent<Damageable>().HitPoints = 1f;
     }
 }

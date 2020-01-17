@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class SceneController : MonoBehaviour
 {
+    //Scene in charge of everythin related to scenes.
     #region Variables
     public static SceneController _instance = null;
     public string gameScene = "SampleScene";

@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Key : MonoBehaviour
 {
+
+    //Key class, gives it a nice spin, and contains a value to check against door values to see if it can open them.
     [SerializeField]
     private string key;
     private float rotationSpeed = 100;

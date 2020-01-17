@@ -6,7 +6,7 @@ using System;
 
 public class PlayerController : VirtualController
 {
-    
+    //Controls players input and collisions.
     private bool isInside;
     private bool canTeleport;
     private float teleportCooldown;
@@ -45,7 +45,6 @@ public class PlayerController : VirtualController
     }
 
 
-    // Update is called once per frame
     void Update()
     {
         LookTowardsTarget();
@@ -82,36 +81,19 @@ public class PlayerController : VirtualController
     }
 
     #region Metodos Heredados
-    protected override void LookTowardsTarget()
+
+    //Turns the player object towards the mouse.
+    protected void LookTowardsTarget()
     {
-        //Get the Screen positions of the object
         Vector2 positionOnScreen = Camera.main.WorldToViewportPoint(transform.position);
-
-        //Get the Screen position of the mouse
         Vector2 mouseOnScreen = (Vector2)Camera.main.ScreenToViewportPoint(Input.mousePosition);
-
-        //Get the angle between the points
         angle = -(Mathf.Atan2((positionOnScreen.y - mouseOnScreen.y), (positionOnScreen.x - mouseOnScreen.x)) * Mathf.Rad2Deg) - followAngleOffset; //AngleBetweenTwoPoints(positionOnScreen, mouseOnScreen);
-
-        //Ta Daaa
         transform.rotation = Quaternion.Euler(new Vector3(0f, angle, 0f));
         rotationToShoot = Quaternion.Euler(new Vector3(0f, angle, 0f));
 
     }
 
-    protected override void MoveTowardsTarget()
-    {
-        RaycastHit hit;
-
-        if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 100))
-        {
-            agent.destination = hit.point;
-            animationController.SetRunningVariable(true);
-            finalClickDestination = hit.point;
-
-        }
-    }
-
+    //Tells the gun to shoot, and plays the animation and sound.
     protected override void Shoot()
     {
         weapon.Shoot(rotationToShoot);
@@ -122,6 +104,7 @@ public class PlayerController : VirtualController
     #endregion
     #region Metodo Propio
 
+    //Method to move through a navMesh using keys.
     void MoveWithKeys()
     {
         float horInput = Input.GetAxis("Horizontal");
@@ -130,6 +113,8 @@ public class PlayerController : VirtualController
         Vector3 moveDestination = transform.position + movement;
         agent.destination = moveDestination;
     }
+
+    //Teleports player forward a set distance, in the direction of the mouse pointer.
     private void Teleport()
     {
         if(canTeleport)

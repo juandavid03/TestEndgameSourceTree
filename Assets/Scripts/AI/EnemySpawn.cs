@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class EnemySpawn : MonoBehaviour
 {
+    //Creates enemies.
     [SerializeField]
     private int maxEnemies;
     [SerializeField]
@@ -11,7 +12,7 @@ public class EnemySpawn : MonoBehaviour
     [SerializeField]
     private EnemyPool enemyPool;
     [SerializeField]
-    private int currentActiveEnemies;
+    public static int currentActiveEnemies;
 
 
     private void Start()
@@ -21,12 +22,13 @@ public class EnemySpawn : MonoBehaviour
     void SpawnEnemy()
     {
 
-        if (CountActive() < maxEnemies)
+        if (currentActiveEnemies < maxEnemies)
         {
 
             GameObject enemy = enemyPool.GetPooledObject();
             if (enemy != null)
             {
+                currentActiveEnemies++;
                 enemy.transform.position = this.transform.position;
                 enemy.transform.rotation = this.transform.rotation;
                 enemy.SetActive(true);
@@ -40,16 +42,5 @@ public class EnemySpawn : MonoBehaviour
     {
         yield return new WaitForSeconds(spawnCooldown);
         SpawnEnemy();
-    }
-    private int CountActive()
-    {
-        for (int i = 0; i < enemyPool.pooledEnemies.Count; i++)
-        {
-            if (enemyPool.pooledEnemies[i].activeSelf == true)
-            {
-                currentActiveEnemies++;
-            }
-        }
-        return currentActiveEnemies;
     }
 }

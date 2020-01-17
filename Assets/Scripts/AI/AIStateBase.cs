@@ -31,9 +31,6 @@ public abstract class AIStateBase
 
     protected void LookAtPlayer()
     {
-        float x = controlled.chaseTarget.position.x;
-        float y = controlled.chaseTarget.position.y;
-
         controlled.transform.Rotate(controlled.chaseTarget.position);
         return;
     }
@@ -41,7 +38,6 @@ public abstract class AIStateBase
     protected Transform LookForPlayer()
     {
         RaycastHit hit;
-        Vector3 end = controlled.eyes.transform.position + controlled.eyes.transform.forward * controlled.sightRange;
         if (Physics.SphereCast(controlled.eyes.transform.position, 2f, controlled.eyes.transform.forward, out hit, controlled.sightRange) 
             && hit.collider.CompareTag("Player"))
         {
