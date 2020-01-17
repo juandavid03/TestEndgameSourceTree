@@ -1,19 +1,21 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class CanvasManager : MonoBehaviour
 {
+    //Variables for the game Scene
     public Image hitPointsImage;
     public Image teleportCooldownImg;
+    [SerializeField]
+    private Text infoText;
 
+    //Variables for the menu scene.
     [SerializeField]
     private GameObject generalPanel;
     [SerializeField]
     private GameObject instructionsPanel;
-    [SerializeField]
-    private Text infoText;
+
 
     private void Start()
     {
@@ -28,11 +30,15 @@ public class CanvasManager : MonoBehaviour
             infoText.enabled = false;
         }
     }
+
+    //Healthbar management.
     public void ReduceHpBar(float fillAmount)
     {
         hitPointsImage.fillAmount = fillAmount;
     }
 
+    //Button Management methods.
+    #region Button Management
     public void PlayBtn()
     {
         SceneController._instance.LoadPlayScene();
@@ -50,11 +56,7 @@ public class CanvasManager : MonoBehaviour
         instructionsPanel.SetActive(false);
     }
 
-    public void PauseBtn()
-    {
-
-    }
-
+    #endregion
     public void DisplayInfoText(string message)
     {
         infoText.text = message;

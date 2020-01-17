@@ -13,6 +13,7 @@ public class PlayerController : VirtualController
     private float teleportDistance;
     private ParticleSystem teleportParticleSystem;
 
+
     private Vector3 finalClickDestination;
     float angle;
 
@@ -25,17 +26,11 @@ public class PlayerController : VirtualController
     [SerializeField]
     private CanvasManager canvasManager;
 
-    public float HitPoints
-    {
-        get { return hitPoints; }
-    }
-
     void Start()
     {
         canTeleport = true;
         teleportDistance = 5f;
-        teleportCooldown = 10f;
-        hitPoints = 1f;
+        teleportCooldown = 5f;
         keys = new List<string>(5);
         followAngleOffset = 90;
         MovementSpeed = 2f;
@@ -43,10 +38,10 @@ public class PlayerController : VirtualController
         agent = this.GetComponent<NavMeshAgent>();
         isInside = false;
         animationController = this.GetComponent<AnimController>();
-        bulletPool = GameManager._instance.GetComponent<BulletPool>();
+        bulletPool = BulletPool._instance;
         keys.Add("null");
         teleportParticleSystem = this.GetComponent<ParticleSystem>();
-        //gun = FindGun();
+        Weapon = this.gameObject.GetComponent<Gun>();
     }
 
 
@@ -119,32 +114,9 @@ public class PlayerController : VirtualController
 
     protected override void Shoot()
     {
+        weapon.Shoot(rotationToShoot);
+        AudioSource.PlayClipAtPoint(shotClip, this.transform.position);
         animationController.SetShootingVariable(true);
-        GameObject bullet = bulletPool.GetPooledObject();
-        if (bullet != null)
-        {
-            bullet.transform.position = gun.transform.position;
-            bullet.transform.rotation = gun.transform.rotation;
-            bullet.SetActive(true);
-            AudioSource.PlayClipAtPoint(shotClip, this.transform.position);
-            bullet.GetComponent<Bullet>().AccelerateBullet(rotationToShoot);
-        }
-    }
-
-    public override void TakeDamage()
-    {
-        hitPoints -= 0.1f;
-        canvasManager.ReduceHpBar(hitPoints);
-    }
-
-    protected override void Die()
-    {
-        print("died");
-    }
-
-    public void DiePublic()
-    {
-        Die();
     }
 
     #endregion

@@ -17,18 +17,16 @@ public class AnimController : MonoBehaviour
             controller = this.GetComponent<VirtualController>();
         }
     }
+
+    //Change this to make the legs move.
     public void SetRunningVariable(bool currentRunningState)
     {
         anim.SetBool("isRunning", currentRunningState);
     }
 
+    //Change this to make the arms move to the shooting positon or out of it.
     public void SetShootingVariable(bool currentShootingState)
     {
         anim.SetBool("isShooting", currentShootingState);
-    }
-
-    public void SetShootingTrigger()
-    {
-        anim.SetTrigger("shoot");
     }
 }

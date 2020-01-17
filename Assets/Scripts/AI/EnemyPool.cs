@@ -26,10 +26,8 @@ public class EnemyPool : MonoBehaviour
 
     public GameObject GetPooledObject()
     {
-        Debug.Log("Pooled enemies: " + pooledEnemies.Count);
         for (int i = 0; i < pooledEnemies.Count; i++)
         {
-            Debug.Log("Getting Pooled Objects: ");
             if (!pooledEnemies[i].activeInHierarchy)
             {
                 return pooledEnemies[i];

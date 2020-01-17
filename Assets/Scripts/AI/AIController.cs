@@ -56,10 +56,6 @@ public class AIController : VirtualController
     private AIStateBase currentState;
     private Dictionary<EnemyState, AIStateBase> states;
 
-    public float HitPoints
-    {
-        get { return hitPoints; }
-    }
     private void Awake()
     {
         patrolWaypoints = GameObject.Find("Patrol_Waypoints");
@@ -67,7 +63,6 @@ public class AIController : VirtualController
         {
             wayPoints[i] = patrolWaypoints.transform.GetChild(i).transform;
         }
-        hitPoints = 1f;
         animationController = this.GetComponent<AnimController>();
         CanShoot = true;
         states = new Dictionary<EnemyState, AIStateBase>();
@@ -75,12 +70,13 @@ public class AIController : VirtualController
         states.Add(EnemyState.Alert, new AlertState(this));
         states.Add(EnemyState.Chase, new ChaseState(this));
         states.Add(EnemyState.Shooting, new ShootingState(this));
+        Weapon = this.gameObject.GetComponent<Gun>();
         currentState = states[EnemyState.Patrol];
         FireRate = 10;
         cooldownTime = 0.5f;
         animationController = this.GetComponent<AnimController>();
         if(bulletPool == null)
-            bulletPool = GameManager._instance.GetComponent<BulletPool>();
+            bulletPool = BulletPool._instance;
         rb = this.GetComponent<Rigidbody>();
         agent = this.GetComponent<NavMeshAgent>();
     }
@@ -97,7 +93,6 @@ public class AIController : VirtualController
             animationController.SetRunningVariable(false);
         }
         currentState.UpdateState();
-        Debug.LogError("Current State: " + currentState);
     }
 
     public void MakeTransition(EnemyState state)
@@ -121,16 +116,9 @@ public class AIController : VirtualController
     }
     protected override void Shoot()
     {
+        weapon.Shoot(directionToShoot);
+        AudioSource.PlayClipAtPoint(shotClip, this.transform.position);
         animationController.SetShootingVariable(true);
-        GameObject bullet = bulletPool.GetPooledObject();
-        if (bullet != null)
-        {
-                bullet.transform.position = gun.transform.position;
-                bullet.transform.rotation = gun.transform.rotation;
-                AudioSource.PlayClipAtPoint(shotClip, this.transform.position);
-                bullet.SetActive(true);
-                bullet.GetComponent<Bullet>().AccelerateBullet(directionToShoot);
-        }
     }
 
     public void StopShooting()
@@ -143,20 +131,6 @@ public class AIController : VirtualController
         directionToShoot = _directionToShoot;
         Shoot();
     }
-    public override void TakeDamage()
-    {
-        hitPoints -= 0.25f;
-    }
-    protected override void Die()
-    {
-        this.gameObject.SetActive(false);
-    }
-
-    public void DiePublic()
-    {
-        Die();
-    }
-
     public IEnumerator shootCooldownCR()
     {
         yield return new WaitForSeconds(cooldownTime * Time.deltaTime);

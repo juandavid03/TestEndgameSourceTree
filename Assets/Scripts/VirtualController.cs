@@ -17,7 +17,6 @@ public abstract class VirtualController : MonoBehaviour
     protected NavMeshAgent agent;
     [SerializeField]
     protected BulletPool bulletPool;
-    protected float hitPoints;
 
     protected Quaternion rotationToShoot;
     protected float FireRate = 4;
@@ -31,11 +30,17 @@ public abstract class VirtualController : MonoBehaviour
 
     [SerializeField]
     protected GameObject gun;
+
+    protected Gun weapon;
+
+    public Gun Weapon
+    {
+        get { return weapon; }
+        set { weapon = value; }
+    }
     protected abstract void LookTowardsTarget();
     protected abstract void MoveTowardsTarget();
     protected abstract void Shoot();
-    public abstract void TakeDamage();
-    protected abstract void Die();
 
     //protected abstract GameObject FindGun();
 }

@@ -25,7 +25,6 @@ public class EnemySpawn : MonoBehaviour
         {
 
             GameObject enemy = enemyPool.GetPooledObject();
-            Debug.Log("SPAWN ENEMY: " + enemy);
             if (enemy != null)
             {
                 enemy.transform.position = this.transform.position;

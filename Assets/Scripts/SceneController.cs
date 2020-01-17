@@ -31,12 +31,6 @@ public class SceneController : MonoBehaviour
 
     }
     #endregion
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
 
     public string getCurrentScene()
     {
@@ -46,5 +40,10 @@ public class SceneController : MonoBehaviour
     public void LoadPlayScene()
     {
         SceneManager.LoadScene(gameScene);
+    }
+
+    public void LoadMenuScene()
+    {
+        SceneManager.LoadScene(menuScene);
     }
 }

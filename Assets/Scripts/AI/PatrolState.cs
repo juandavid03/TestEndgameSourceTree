@@ -18,7 +18,6 @@ public class PatrolState : AIStateBase
     {
         Patrol();
         Search();
-        Debug.Log("IS STOPPED? " + controlled.navMeshAgent.isStopped);
     }
 
     public override void StartState()

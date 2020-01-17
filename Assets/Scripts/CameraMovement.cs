@@ -12,6 +12,7 @@ public class CameraMovement : MonoBehaviour
         LookAtTarget();
     }
 
+    //Follow the player around.
     private void LookAtTarget()
     {
         this.transform.position = new Vector3(objectToFollow.transform.position.x, this.transform.position.y, objectToFollow.transform.position.z);

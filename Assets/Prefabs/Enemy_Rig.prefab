@@ -651,6 +651,8 @@ GameObject:
   - component: {fileID: 8664412400522996332}
   - component: {fileID: 8664412400522996333}
   - component: {fileID: 8664412400522996320}
+  - component: {fileID: 2562072160397006025}
+  - component: {fileID: 1678997232444811984}
   - component: {fileID: 8664412400522996330}
   - component: {fileID: 8664412400522996331}
   m_Layer: 9
@@ -755,12 +757,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animationController: {fileID: 0}
   agent: {fileID: 8664412400522996330}
+  bulletPool: {fileID: 0}
   shotClip: {fileID: 8300000, guid: 35c6c618b7df03d46a55c220e2646665, type: 3}
   source: {fileID: 8664412400635210741}
   gun: {fileID: 8664412401945759148}
   wayPoints:
   - {fileID: 0}
   - {fileID: 0}
+  patrolWaypoints: {fileID: 0}
   eyes: {fileID: 8664412400413720651}
   sightRange: 20
   searchingTurnSpeed: 120
@@ -768,6 +772,31 @@ MonoBehaviour:
   offset: {x: 0, y: 0.5, z: 0}
   navMeshAgent: {fileID: 8664412400522996330}
   chaseTarget: {fileID: 0}
+--- !u!114 &2562072160397006025
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8664412400522996328}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d4db9aa423a9e543a69acb3bf06d832, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gun: {fileID: 8664412401945759148}
+--- !u!114 &1678997232444811984
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8664412400522996328}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa1e257a820935544b4af289e107aa76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!195 &8664412400522996330
 NavMeshAgent:
   m_ObjectHideFlags: 0
