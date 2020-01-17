@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class SceneController : MonoBehaviour
 {
+    //Class in charge of everything scene related.
     #region Variables
     public static SceneController _instance = null;
     public string gameScene = "SampleScene";
@@ -32,11 +33,13 @@ public class SceneController : MonoBehaviour
     }
     #endregion
 
+    //returns the current scene to check in other scripts.
     public string getCurrentScene()
     {
         return SceneManager.GetActiveScene().name;
     }
 
+    
     public void LoadPlayScene()
     {
         SceneManager.LoadScene(gameScene);

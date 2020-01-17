@@ -6,7 +6,7 @@ using System;
 
 public class PlayerController : VirtualController
 {
-    
+    //Mnages the players inputs and collisions.
     private bool isInside;
     private bool canTeleport;
     private float teleportCooldown;
@@ -82,7 +82,9 @@ public class PlayerController : VirtualController
     }
 
     #region Metodos Heredados
-    protected override void LookTowardsTarget()
+
+    //Turns the player towards the mouse position on screen.
+    protected void LookTowardsTarget()
     {
         //Get the Screen positions of the object
         Vector2 positionOnScreen = Camera.main.WorldToViewportPoint(transform.position);
@@ -99,19 +101,8 @@ public class PlayerController : VirtualController
 
     }
 
-    protected override void MoveTowardsTarget()
-    {
-        RaycastHit hit;
 
-        if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 100))
-        {
-            agent.destination = hit.point;
-            animationController.SetRunningVariable(true);
-            finalClickDestination = hit.point;
-
-        }
-    }
-
+    //Tells the gun to shoot and plays the animation and sound.
     protected override void Shoot()
     {
         weapon.Shoot(rotationToShoot);
@@ -122,6 +113,7 @@ public class PlayerController : VirtualController
     #endregion
     #region Metodo Propio
 
+    //Method to move through a navMesh using keyboard commands.
     void MoveWithKeys()
     {
         float horInput = Input.GetAxis("Horizontal");
@@ -130,6 +122,8 @@ public class PlayerController : VirtualController
         Vector3 moveDestination = transform.position + movement;
         agent.destination = moveDestination;
     }
+
+    //Moves the player instanly a set distance in the direction of the mouse.
     private void Teleport()
     {
         if(canTeleport)
@@ -144,6 +138,7 @@ public class PlayerController : VirtualController
         }
     }
 
+    //Resets the teleport ability to ON.
     private IEnumerator TeleportCooldownCR()
     {
         yield return new WaitForSeconds(teleportCooldown);
@@ -152,6 +147,8 @@ public class PlayerController : VirtualController
     }
 
     #endregion
+
+    //Collision and trigger management.
     #region Triggers & Collisions
     private void OnTriggerEnter(Collider other)
     {

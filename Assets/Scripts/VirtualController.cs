@@ -5,6 +5,7 @@ using UnityEngine.AI;
 
 public abstract class VirtualController : MonoBehaviour
 {
+    //Base class to keep the AI & Player controller more organized.
     protected float MovementSpeed;
     protected int followAngleOffset;
 
@@ -38,8 +39,6 @@ public abstract class VirtualController : MonoBehaviour
         get { return weapon; }
         set { weapon = value; }
     }
-    protected abstract void LookTowardsTarget();
-    protected abstract void MoveTowardsTarget();
     protected abstract void Shoot();
 
     //protected abstract GameObject FindGun();

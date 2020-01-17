@@ -94,7 +94,7 @@ public class AIController : VirtualController
         }
         currentState.UpdateState();
     }
-
+    //Changes the state machine between diferent states.
     public void MakeTransition(EnemyState state)
     {
         currentState = states[state];
@@ -106,14 +106,8 @@ public class AIController : VirtualController
         currentState.OnTriggerEnter(other);
     }
 
-    protected override void LookTowardsTarget()
-    {
-        throw new System.NotImplementedException();
-    }
-    protected override void MoveTowardsTarget()
-    {
-        throw new System.NotImplementedException();
-    }
+
+    //Tells the weapon to shoot, also plays the animation and sound.
     protected override void Shoot()
     {
         weapon.Shoot(directionToShoot);
@@ -121,11 +115,13 @@ public class AIController : VirtualController
         animationController.SetShootingVariable(true);
     }
 
+    //Resets the shooting animation.
     public void StopShooting()
     {
         animationController.SetShootingVariable(false);
     }
 
+    //Recieves external output from the state to shoot.
     public void StopAndShoot(Vector3 _directionToShoot)
     {
         directionToShoot = _directionToShoot;

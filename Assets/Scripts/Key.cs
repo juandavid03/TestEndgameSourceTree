@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Key : MonoBehaviour
 {
+
+    //Manages the keys, makes them spin for a nice effect, and stores the info of the door it opens.
     [SerializeField]
     private string key;
     private float rotationSpeed = 100;
