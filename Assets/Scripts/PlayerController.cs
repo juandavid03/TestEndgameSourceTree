@@ -223,6 +223,8 @@ public class PlayerController : VirtualController
                 if (keys[i] == other.GetComponent<Door>().LockForKey)
                 {
                     other.GetComponent<Door>().OpenDoor();
+                    other.GetComponent<Collider>().enabled = false;
+                    canvasManager.DisplayInfoText("Open Sesame");
                     keys.Remove(keys[i]);
                 }
                 else
