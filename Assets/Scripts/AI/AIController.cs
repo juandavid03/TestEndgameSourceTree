@@ -127,7 +127,7 @@ public class AIController : VirtualController
         directionToShoot = _directionToShoot;
         Shoot();
     }
-    public IEnumerator shootCooldownCR()
+    public IEnumerator ShootCooldownCR()
     {
         yield return new WaitForSeconds(cooldownTime * Time.deltaTime);
         canShoot = true;
